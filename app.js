@@ -19,7 +19,7 @@ const MongoStore = require('connect-mongo');
 
 const mongoDbUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/yelp-camp'
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb+srv://hemendra:Hariom0786@app-cluster.kphng.mongodb.net/yelp-camp?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>console.log("database connected"))
 .catch(err=>console.log(err))
 
@@ -42,12 +42,12 @@ const sessionConfig = {
   store,
   resave: false,
   saveUninitialized: true,
-  cookie: { 
+  cookie: {
       httpOnly: true,
       expires: Date.now() + 1000*60*60*24*7,
       maxAge: 1000*60*60*24*7
    }
-   
+
 }
 app.use(session(sessionConfig))
 
@@ -69,8 +69,8 @@ app.use((req,res,next)=>{
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
     res.locals.currentUser = req.user
-    
-    
+
+
     next()
 })
 
@@ -91,16 +91,16 @@ app.use(express.static(path.join(__dirname,'public')))
 
 
 app.use((err,req,res,next)=>{
-    
+
     if(err.name==="CastError"){
-    
+
     next(new AppError("castError",404))
     }
     else if(err.name==="ValidationError"){
-    
+
         next(new AppError("validationError", 403))
     }else{
-        
+
         next(err)
 
     }
@@ -109,15 +109,15 @@ app.use((err,req,res,next)=>{
 
 app.use((err,req,res,next)=>{
     const { status=404, message="something went wrong"} = err
-    
-    
+
+
     if(err.code=="LIMIT_UNEXPECTED_FILE"){
         req.flash('error', "only 2 files are allowed")
         res.redirect(req.session.currentPath)
     }else{
     res.status(status).render('error', {err})
     }
-    
+
 })
 
 const PORT = process.env.PORT || 3000
