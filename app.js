@@ -19,7 +19,7 @@ const MongoStore = require('connect-mongo');
 
 const mongoDbUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/yelp-camp'
 
-mongoose.connect('mongodb+srv://hemendra:Hariom0786@app-cluster.kphng.mongodb.net/yelp-camp?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(mongoDbUrl, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>console.log("database connected"))
 .catch(err=>console.log(err))
 
