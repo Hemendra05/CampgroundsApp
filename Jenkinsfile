@@ -19,7 +19,7 @@ pipeline {
             steps {
                 echo "Deploying this Application on the Kubernetes Cluster."
                 sh "sudo kubectl create deployment yelp-app --image=hemendra05/yelp-camp:latest --port=3000 --replicas=3"
-                sh "kubectl expose deployment yelp-app --type=NodePort --port=80 --target-port=3000"
+                sh "sudo kubectl expose deployment yelp-app --type=NodePort --port=80 --target-port=3000"
                 echo "Successfully Deployed the App."
             }
         }
