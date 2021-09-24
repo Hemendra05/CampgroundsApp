@@ -13,20 +13,6 @@ pipeline {
 
     stages {
 
-      // checkout repo
-      stage('Checkout SCM') {
-          steps {
-              checkout([
-               $class: 'GitSCM',
-               branches: [[name: 'master']],
-               userRemoteConfigs: [[
-                  url: 'git@github.com:Hemendra05/CampgroundsApp.git',
-                  credentialsId: '',
-               ]]
-            ])
-          }
-        }
-
         // create docker image
         stage('DockerImage') {
             steps {
