@@ -3,7 +3,7 @@ properties([pipelineTriggers([githubPush()])])
 pipeline {
 
     /* specify nodes for executing */
-    agent none
+    agent any
 
 
     // setup parameter for docker image tag
