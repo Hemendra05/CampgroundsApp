@@ -27,8 +27,10 @@ pipeline {
         stage('KubernetesDeploy') {
             steps {
                 echo "Deploying this Application on the Kubernetes Cluster."
-                sh "sudo kubectl create deployment yelp-app --image=hemendra05/yelp-camp:latest --port=3000 --replicas=3"
-                sh "sudo kubectl expose deployment yelp-app --type=NodePort --port=80 --target-port=3000"
+                sh "sudo kubectl apply -f deployApp.yml"
+                sh "sudo kubectl get deploy"
+                sh "sudo kubectl get po"
+                sh "sudo kubectl get svc"
                 echo "Successfully Deployed the App"
             }
         }
