@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
 
     parameters {
         string(name: "imageTag", defaultValue: "latest", description: "This tag is for creating the Docker Image.")
