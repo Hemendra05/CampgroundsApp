@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: "imageTag", defaultValue: "latest", description: "This tag is for creating the Docker Image")
+        string(name: "imageTag", defaultValue: "latest", description: "This tag is for creating the Docker Image.")
     }
 
     stages {
