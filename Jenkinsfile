@@ -31,7 +31,7 @@ pipeline {
                 sh "sudo kubectl get deploy"
                 sh "sudo kubectl get po"
                 sh "sudo kubectl get svc"
-                echo "Successfully Deployed the App"
+                echo "Successfully Deployed the App."
             }
         }
     }
