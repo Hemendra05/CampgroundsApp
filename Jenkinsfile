@@ -20,7 +20,7 @@ pipeline {
                $class: 'GitSCM',
                branches: [[name: 'master']],
                userRemoteConfigs: [[
-                  url: 'git@github.com/Hemendra05/CampgroundsApp.git',
+                  url: 'git@github.com:Hemendra05/CampgroundsApp.git',
                   credentialsId: '',
                ]]
             ])
