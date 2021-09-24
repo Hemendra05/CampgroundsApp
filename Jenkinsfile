@@ -1,11 +1,33 @@
+properties([pipelineTriggers([githubPush()])])
+
 pipeline {
+
+    /* specify nodes for executing */
     agent none
 
+
+    // setup parameter for docker image tag
     parameters {
         string(name: "imageTag", defaultValue: "latest", description: "This tag is for creating the Docker Image.")
     }
 
     stages {
+
+      // checkout repo
+      stage('Checkout SCM') {
+          steps {
+              checkout([
+               $class: 'GitSCM',
+               branches: [[name: 'master']],
+               userRemoteConfigs: [[
+                  url: 'git@github.com/Hemendra05/CampgroundsApp.git',
+                  credentialsId: '',
+               ]]
+            ])
+          }
+        }
+
+        // create docker image
         stage('DockerImage') {
             steps {
                 echo "Creating the docker image for the web app by giving Dockerfile."
@@ -15,6 +37,7 @@ pipeline {
             }
         }
 
+        // deploying the webapp
         stage('KubernetesDeploy') {
             steps {
                 echo "Deploying this Application on the Kubernetes Cluster."
