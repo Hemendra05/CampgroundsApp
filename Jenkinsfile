@@ -37,6 +37,7 @@ pipeline {
 
                 echo "Rolling out to new version of the App."
                 sh "sudo kubectl set image deployment/yelp-deployment yelp-camp=hemendra05/yelp-camp:${params.IMAGE_TAG}"
+                sh "sudo kubectl get svc"
                 echo "The App has been rollout Successfully!!"
 
               } else {           // else rollout to new version if we have chnage in app
