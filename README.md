@@ -185,3 +185,11 @@ module.exports.assembleResponse = function () {
     }
 }
 ```
+
+After writting this code, fucntion will create and then we'll test the fucntion. After successfull testing we'll add trigger to the function. We use API Gateway as trigger and add an API endpoint. As soon we click on that api endpoint the app will open from the ECS.
+
+Here is the endpoint of that API: </br>
+
+Click here: https://j1ajujh8o8.execute-api.us-east-1.amazonaws.com/default/myYelpCampFnction
+
+So here we deploy our app in ECS and use lambda function to start that.
